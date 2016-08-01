@@ -1,0 +1,47 @@
+﻿
+.stockist-page h1 { text-align: center; }
+
+/*Search*/
+.stockist-page { margin: 0 0 30px;}
+.stockist-page .inputs label { display: inline-block;width: 120px;}
+.stockist-page .search-input, .stockist-page .search-input .fieldset { margin: 0;text-align: center;}
+.stockist-page .fieldset, .stockist-page .buttons { box-shadow: none;text-align: center;margin: 0 0 10px 0;display: inline-block;}
+.stockist-page .form-fields .inputs { display: inline-block;margin: 0 20px 10px;font-size: 14px; }
+.stockist-page .warning { margin: 0 0 20px;text-align: center;color: red;}
+.stockist-page .form-fields .inputs input, .stockist-page .form-fields .inputs select, .stockist-page .buttons input { width: 200px;line-height: 36px;padding: 0 10px; }
+.stockist-page .buttons input { padding: 0;}
+
+/*Results*/
+.stockist-page .search-results { margin: 10px 0;}
+.stockist-page .item-box.active { cursor: pointer;}
+.stockist-page .stockist-list .item-box {padding: 0 0 20px; border-bottom: 1px solid;margin: 0 auto 10px;}
+.stockist-page .stockist-grid .item-box { margin: 0 auto 5px;}
+.stockist-page .stockist-grid .item-box h2, .stockist-page .stockist-grid .item-box > div { margin: 5px 0;}
+.stockist-page .google-map-link { font-weight: 700;}
+
+/*Map*/
+.stockist-page #map-canvas { margin: 0 auto;padding: 0;height: 250px;max-width: 95%;}
+.stockist-page #map-canvas img { max-width: none !important;}
+
+@media (min-width: 481px) {
+    .stockist-page .search-results { margin: 30px 0;}
+    .stockist-page .stockist-grid .item-box { width: 100%;display: block;margin: 0 0 10px;}
+    .stockist-page .form-fields, .stockist-page .buttons { margin: 0 0 10px 0;}
+}
+
+@media (min-width: 769px) {
+    .stockist-page .buttons { margin: 0 0 20px 20px;}
+    .stockist-page .stockist-grid .item-box { width: 31%;margin: 0 1%;display: inline-block;}
+    .stockist-page .stockist-list .item-box { width: 100%;display: block;}
+    .stockist-page .stockist-list .item-box .lhs, body .stockist-page .stockist-list .item-box .rhs { float: left;width: 50%;}
+    .stockist-page .pager { border: none;}
+    .stockist-page #map-canvas { margin: 0;padding: 0;height: 400px;max-width: none;}
+}
+
+@media (min-width: 1001px) {
+    .inputs label { width: auto;}
+}
+
+@media (min-width: 1281px) {
+    .stockist-page .form-fields .inputs input, .stockist-page .form-fields .inputs select, .stockist-page .buttons input { width: 275px; }
+}

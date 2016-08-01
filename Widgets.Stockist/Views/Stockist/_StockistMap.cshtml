@@ -1,0 +1,93 @@
+﻿@model Nop.Plugin.Widgets.DbgStockist.Models.StockistSearchModel
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+@{
+    var dfltLat = @Model.DefaultLatitude ?? "-34.912806";
+    var dfltLng = @Model.DefaultLongitude ?? "138.625193";
+}
+
+<script type="text/javascript">
+    var map, bounds, allStockists = [], markers = [];
+    
+    //Create Marker
+    function addMarker(stockist, draggable) {
+        var latlng = new google.maps.LatLng(stockist.lat, stockist.lng);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: latlng,
+            animation: google.maps.Animation.DROP,
+            title: stockist.title,
+            draggable: draggable
+        });
+        bounds.extend(latlng);
+        
+        //info window popup - displayed when user clicks the marker
+        var infoWindow = new google.maps.InfoWindow({
+            maxWidth: 400,
+            content: "<h5>" + stockist.title +"</h5><div>" + stockist.desc + "</div>"
+        });
+        marker.addListener('click', function() {
+            infoWindow.open(map, marker);
+        });
+
+        marker.setMap(map);
+        markers[stockist.index] = marker;
+    }
+       
+    //Initialize
+    function initialize() {
+        //create the map
+        var mapOptions = {
+            center: new google.maps.LatLng(@dfltLat, @dfltLng),
+            zoom: 3,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        bounds = new google.maps.LatLngBounds;
+
+        //populate allStockists array with data
+        ($('.item-box').each(function () {
+            var lat = $(this).attr("data-latitude"),
+                lng = $(this).attr("data-longitude"),
+                ind = $(this).attr("data-ind");
+            if (null != lat && null != lng) {
+                var s = null != ind ? parseInt(ind) : 0,
+                o = {
+                    index: s,
+                    lat: lat,
+                    lng: lng,
+                    title: $(this).attr("data-title"),
+                    desc: $(this).attr("data-desc"),
+                };
+                allStockists[s] = o;
+            }
+        }));
+        
+        //create marker for each stockist
+        if (allStockists.length > 0) {
+            for (var e = 0; e < allStockists.length; e++) {
+                null != allStockists[e] && addMarker(allStockists[e], false);
+            }
+            map.fitBounds(bounds);
+        }
+
+        //add active class to bounce marker on hover
+        $(".item-box").hover( 
+            function () { 
+                $(this).addClass("active");
+                var e = markers[$(this).attr("data-ind")];
+                null != e && e.setAnimation(google.maps.Animation.BOUNCE);
+            },
+            function () { 
+                $(this).removeClass("active");
+                var e = markers[$(this).attr("data-ind")];
+                null != e && e.setAnimation(null);
+            } 
+         );
+    }
+    google.maps.event.addDomListener(window, "load", initialize);
+</script>
+
+<div id="map-canvas"></div>

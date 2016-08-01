@@ -1,0 +1,118 @@
+﻿@model Nop.Plugin.Widgets.DbgStockist.Models.StockistSearchModel
+@using Nop.Services.Localization
+@using Nop.Web.Framework.UI;
+@using Nop.Web.Extensions
+
+@{
+    Layout = "~/Views/Shared/_Root.cshtml";
+
+    Html.AddCssFileParts("~/Plugins/Widgets.Stockist/Content/styles.css");
+
+    var topicService = Nop.Core.Infrastructure.EngineContext.Current.Resolve<Nop.Services.Topics.ITopicService>();
+    var topic = topicService.GetTopicBySystemName("Stockists");
+    if (topic != null)
+    {
+        Html.AddTitleParts(topic.GetLocalized(x => x.MetaTitle));
+        Html.AddMetaDescriptionParts(topic.GetLocalized(x => x.MetaDescription));
+        Html.AddMetaKeywordParts(topic.GetLocalized(x => x.MetaKeywords));
+    }
+}
+
+<div class="page stockist-page">
+    <div class="page-body">
+        @Html.Action("TopicBlock", "Topic", new { systemName = "Stockists" })
+        
+        <div class="search-input">
+            @using (Html.BeginRouteForm("Nop.Plugin.Widgets.DbgStockist.Stockists", FormMethod.Get))
+            {
+                <div class="fieldset">
+                    <div class="form-fields">
+                        <div class="inputs">
+                            @Html.LabelFor(model => model.p, new { }, ":")
+                            @Html.TextBoxFor(model => model.p, new { @class = "search-text" })
+                        </div>
+                        @if (Model.AvailableCountries.Count > 0)
+                        {
+                            <div class="inputs">
+                                @Html.LabelFor(model => model.CountryId, new {}, ":")
+                                @Html.DropDownListFor(model => model.CountryId, Model.AvailableCountries)
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(model => model.CountryId)
+                        }
+                    </div>
+                </div>
+                <div class="buttons">
+                    <input type="submit" class="button-1 search-button" value="@T("Search")" />
+                </div>
+            }
+        </div>
+        @if (Model.Stockists.Count > 0)
+        {
+            @*page size*@
+            if (Model.PagingFilteringContext.AllowCustomersToSelectPageSize)
+            {
+                <div class="product-page-size">
+                    <span>@T("Catalog.PageSize")</span>
+                    @Html.DropDownList("products-pagesize", Model.PagingFilteringContext.PageSizeOptions, new { onchange = "setLocation(this.value);" })
+                    <span>@T("Catalog.PageSize.PerPage")</span>
+                </div>
+            }
+        }
+        
+        @if (!String.IsNullOrEmpty(Model.Warning))
+        {
+            <div class="warning">
+                @Model.Warning
+            </div>
+        }
+
+        @if (Model.ShowMap)
+        {
+            @Html.Partial("~/Plugins/Widgets.Stockist/Views/Stockist/_StockistMap.cshtml", Model)
+        }
+
+        <div class="search-results">
+            @if (Model.NoResults)
+            {
+                <strong class="result">
+                    @T("Nop.Plugin.Widgets.DbgStockist.NoResultsText")
+                </strong>
+            }
+            @if (Model.Stockists.Count > 0)
+            {
+                var ind = 0;
+                if (Model.PagingFilteringContext.ViewMode == "list")
+                {
+                    @*list mode*@
+                    <div class="stockist-list">
+                        @foreach (var stockist in Model.Stockists)
+                        {
+                            <div class="item-box" data-ind="@(ind++)" data-id="@stockist.Id" data-latitude="@stockist.Latitude" data-longitude="@stockist.Longitude" data-title="@stockist.Address.Company" data-desc="@stockist.Address.AddressHtml">
+                                @Html.Partial("~/Plugins/Widgets.Stockist/Views/Stockist/_StockistBox.cshtml", stockist)
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    @*grid mode*@
+                    <div class="stockist-grid">
+                        @foreach (var stockist in Model.Stockists)
+                        {
+                            <div class="item-box" data-ind="@(ind++)" data-id="@stockist.Id" data-latitude="@stockist.Latitude" data-longitude="@stockist.Longitude" data-title="@stockist.Address.Company" data-desc="@stockist.Address.AddressHtml">
+                                @Html.Partial("~/Plugins/Widgets.Stockist/Views/Stockist/_StockistBox.cshtml", stockist)
+                            </div>
+                        }
+                    </div>
+                }
+            }
+            <div class="pager">
+                @Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber")
+            </div>
+        </div>   
+    </div>
+</div>
+

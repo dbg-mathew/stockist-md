@@ -1,0 +1,220 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Widgets.DbgStockist.Models.StockistConfigurationModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ShowOnTopMenu):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ShowOnTopMenu)
+                @Html.ValidationMessageFor(model => model.ShowOnTopMenu)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ShowInGrid):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ShowInGrid)
+                @Html.ValidationMessageFor(model => model.ShowInGrid)
+            </td>
+        </tr>
+    </table>
+    <table class="adminContent">
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ShowCountry):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ShowCountry)
+                @Html.ValidationMessageFor(model => model.ShowCountry)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.FirstNameEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.FirstNameEnabled)
+                @Html.ValidationMessageFor(model => model.FirstNameEnabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.LastNameEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.LastNameEnabled)
+                @Html.ValidationMessageFor(model => model.LastNameEnabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.EmailEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.EmailEnabled)
+                @Html.ValidationMessageFor(model => model.EmailEnabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.CodeEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.CodeEnabled)
+                @Html.ValidationMessageFor(model => model.CodeEnabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.DataField1Enabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.DataField1Enabled)
+                @Html.ValidationMessageFor(model => model.DataField1Enabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.DataField2Enabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.DataField2Enabled)
+                @Html.ValidationMessageFor(model => model.DataField2Enabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.DataField3Enabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.DataField3Enabled)
+                @Html.ValidationMessageFor(model => model.DataField3Enabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.DataField4Enabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.DataField4Enabled)
+                @Html.ValidationMessageFor(model => model.DataField4Enabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.FaxEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.FaxEnabled)
+                @Html.ValidationMessageFor(model => model.FaxEnabled)
+            </td>
+        </tr>
+    </table>
+    <table class="adminContent">
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AllowCustomersToSelectPageSize):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AllowCustomersToSelectPageSize)
+                @Html.ValidationMessageFor(model => model.AllowCustomersToSelectPageSize)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.PageSizeOptions):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.PageSizeOptions)
+                @Html.ValidationMessageFor(model => model.PageSizeOptions)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.PageSize):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.PageSize)
+                @Html.ValidationMessageFor(model => model.PageSize)
+            </td>
+        </tr>
+        <tr/>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.SearchTermMinimumLength):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.SearchTermMinimumLength)
+                @Html.ValidationMessageFor(model => model.SearchTermMinimumLength)
+            </td>
+        </tr>
+    </table>
+    <table class="adminContent">
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                To show stockists locations on a single large map, use the settings below.
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ShowMap):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ShowMap)
+                @Html.ValidationMessageFor(model => model.ShowMap)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ApiKey):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ApiKey)
+                @Html.ValidationMessageFor(model => model.ApiKey)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.StoreGeoCodedLocationData):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.StoreGeoCodedLocationData)
+                @Html.ValidationMessageFor(model => model.StoreGeoCodedLocationData)
+            </td>
+        </tr>
+    </table>
+    <table class="adminContent">
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+            <tr>
+            <td colspan="2">
+                <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            </td>
+        </tr>
+    </table>
+}

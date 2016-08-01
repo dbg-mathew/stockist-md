@@ -1,0 +1,8 @@
+﻿Group: Dbg Technologies
+FriendlyName: Dbg Stockist
+SystemName: Widgets.Stockist
+Version: 1.01
+SupportedVersions: 3.50,3.60,3.70
+Author: DBG Technologies
+DisplayOrder: 4
+FileName: Nop.Plugin.Widgets.DbgStockist.dll

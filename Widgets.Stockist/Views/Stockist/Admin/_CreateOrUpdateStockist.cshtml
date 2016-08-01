@@ -1,0 +1,77 @@
+﻿@model Nop.Plugin.Widgets.DbgStockist.Models.StockistModel
+
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+@Html.EditorFor(model => model.Address, "Address")
+
+
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Code):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Code)
+                @Html.ValidationMessageFor(model => model.Code)
+            </td>
+        </tr>
+        @if (Model.DataField1Enabled)
+        {
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.DataField1):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.DataField1)
+                    @Html.ValidationMessageFor(model => model.DataField1)
+                </td>
+            </tr>
+        }
+        @if (Model.DataField2Enabled)
+        {
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.DataField2):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.DataField2)
+                    @Html.ValidationMessageFor(model => model.DataField2)
+                </td>
+            </tr>
+        }
+        @if (Model.DataField3Enabled)
+        {
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.DataField3):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.DataField3)
+                    @Html.ValidationMessageFor(model => model.DataField3)
+                </td>
+            </tr>
+        }
+        @if (Model.DataField4Enabled)
+        {
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.DataField4):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.DataField4)
+                    @Html.ValidationMessageFor(model => model.DataField4)
+                </td>
+            </tr>
+        }
+        <tr/>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Published):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Published)
+                @Html.ValidationMessageFor(model => model.Published)
+            </td>
+        </tr>
+    </table>

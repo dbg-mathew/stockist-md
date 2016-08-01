@@ -1,0 +1,25 @@
+﻿@model Nop.Plugin.Widgets.DbgStockist.Models.StockistModel
+
+
+<h2>@Html.Raw(Model.Address.Company)</h2>
+<div class="lhs">
+    <p class="address">@Html.Raw(Model.Address.AddressHtml)</p>
+    @if (!String.IsNullOrEmpty(Model.Address.PhoneNumber))
+    {
+        <p class="phone">Phone: <a href="tel:@Html.Raw(Model.Address.PhoneNumber)">@Html.Raw(Model.Address.PhoneNumber)</a></p>    
+    }
+    @if (!String.IsNullOrEmpty(Model.Address.FaxNumber))
+    {
+        <p class="fax">Fax: @Html.Raw(Model.Address.FaxNumber)</p>    
+    }
+    <p class="google-map-link">@Html.Raw(@Model.GoogleMapLink)</p>    
+</div>
+@if (Model.DataField1Enabled)
+{
+    <div class="rhs">
+        <p><strong>@T("Nop.Plugin.Widgets.DbgStockist.DataField1")</strong></p>
+        <p class="data-field-1">@Html.Raw(Model.DataField1)</p>
+    </div>
+}
+
+
